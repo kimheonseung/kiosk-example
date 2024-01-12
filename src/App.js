@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import CategoryNav from './components/CategoryNav';
+import Header from './components/Header';
+import Menu from './components/Menu';
 
 function App() {
+
+  const [selectedCategory, setSelectedCategory] = useState()
+
+  const onCategoryClick = (category) => {
+    setSelectedCategory(category)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <div className="container">
+          <Header />
+          <CategoryNav onCategoryClick={onCategoryClick} />
+          <Menu categoryId={selectedCategory} />
+        </div>
+      </div>
+    </>
   );
 }
 
